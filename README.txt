@@ -1,6 +1,6 @@
 = rdialogy
 
-* http://rdialogy.rubyforge.com
+* http://github.com/gooch/RDialogy
 
 == DESCRIPTION:
 
