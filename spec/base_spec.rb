@@ -16,5 +16,15 @@ describe RDialogy::Base do
       end
     end
   end
+
+  describe ".add_quotes" do
+    it "should return quoted strings" do
+      RDialogy::Base.add_quotes([1, 2]).should == ["'1'", "'2'"]
+    end
+
+    it "should escape single quotes inside the strings" do
+      RDialogy::Base.add_quotes(["Kitten's feet"]).should == ["'Kitten'\\''s feet'"]
+    end
+  end
 end
 

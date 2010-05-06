@@ -9,6 +9,7 @@ module RDialogy
 
     def self.run(options={}, std_err = false)
       cmd = dialog_string options
+
       if std_err
         begin
           tmp = Tempfile.new('tmp')
@@ -60,7 +61,7 @@ module RDialogy
 # Adds single quotes around all of the elements in the array returned by _args_
 
     def self.add_quotes(args)
-      args.map{|e| "'#{e}'"}
+      args.map{|e| "'#{e.to_s.gsub(/'/, "'\\\\''")}'"}
     end
   end
 end
