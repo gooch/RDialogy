@@ -13,13 +13,7 @@ describe RDialogy::Checklist do
     before :each do
       require 'stringio'
 
-      data = StringIO.new '"bread" "milk"' + "\n"
-
-      tmp = mock('tempfile')
-      Tempfile.stub!(:new).and_return(tmp)
-      tmp.stub!(:path).and_return('/tmp/tempfile')
-      tmp.stub!(:readline).and_return { data.readline }
-      tmp.stub!(:close)
+      stdout_will_return '"bread" "milk"'
 
       @items = %w(bread milk cheese).map{|e| MenuItem.new(e, e)}
       @expectation = "dialog --checklist 'hello world' '0' '0' '3'"
@@ -39,3 +33,4 @@ describe RDialogy::Checklist do
     end
   end
 end
+

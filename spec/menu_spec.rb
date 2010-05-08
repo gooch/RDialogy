@@ -13,13 +13,7 @@ describe RDialogy::Menu do
     before :each do
       require 'stringio'
 
-      data = StringIO.new 'bread' + "\n"
-
-      tmp = mock('tempfile')
-      Tempfile.stub!(:new).and_return(tmp)
-      tmp.stub!(:path).and_return('/tmp/tempfile')
-      tmp.stub!(:readline).and_return { data.readline }
-      tmp.stub!(:close)
+      stdout_will_return 'bread'
 
       @items = %w(bread milk cheese).map{|e| MenuItem.new(e, e)}
       @expectation = "dialog --menu 'hello world' '0' '0' '3'"
@@ -39,3 +33,4 @@ describe RDialogy::Menu do
     end
   end
 end
+

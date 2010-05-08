@@ -30,6 +30,7 @@ lib/rdialogy/menu.rb
 lib/rdialogy/message_box.rb
 lib/rdialogy/mixedgauge.rb
 lib/rdialogy/passwordbox.rb
+lib/rdialogy/yesno.rb
 lib/rdialogy.rb
 spec/base_spec.rb
 spec/calendar_spec.rb
@@ -45,3 +46,5 @@ spec/message_box_spec.rb
 spec/mixedgauge_spec.rb
 spec/passwordbox_spec.rb
 spec/spec_helper.rb
+spec/yesno_spec.rb
+

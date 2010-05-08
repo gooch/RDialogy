@@ -14,7 +14,7 @@ module RDialogy
         begin
           tmp = Tempfile.new('tmp')
           cmd += ' 2> ' + tmp.path
-        
+
           system cmd
 
           output = String.new
@@ -25,7 +25,7 @@ module RDialogy
           if block_given?
             return yield output
           else
-            return output
+            return output.chomp
           end
         ensure
           tmp.close
@@ -65,3 +65,4 @@ module RDialogy
     end
   end
 end
+

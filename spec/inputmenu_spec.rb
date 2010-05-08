@@ -11,16 +11,6 @@ describe RDialogy::InputMenu do
   end
 
   describe ".run" do
-    def stub_tempfile(value)
-      data = StringIO.new value
-
-      tmp = mock('tempfile')
-      Tempfile.stub!(:new).and_return(tmp)
-      tmp.stub!(:path).and_return('/tmp/tempfile')
-      tmp.stub!(:readline).and_return { data.readline }
-      tmp.stub!(:close)
-    end
-
     before :each do
       @items = %w(grapes bread milk cheese).map{|e| MenuItem.new(e, e)}
       RDialogy::InputMenu.stub!(:system)
@@ -28,14 +18,14 @@ describe RDialogy::InputMenu do
 
     describe "when the user doesn't rename an object" do
       it "should return the tag of the object as a string" do
-        stub_tempfile "grapes\n"
+        stdout_will_return "grapes"
         RDialogy::InputMenu.run(:text => 'hello world', :items => @items).should == 'grapes'
       end
     end
 
     describe "when the user does rename an object" do
       it "should return an array containing the tag and the new value" do
-        stub_tempfile "RENAMED grapes sultanas\n"
+        stdout_will_return "RENAMED grapes sultanas"
         RDialogy::InputMenu.run(:text => 'hi', :items => @items).should == ['grapes', 'sultanas']
       end
     end
@@ -46,7 +36,7 @@ describe RDialogy::InputMenu do
       @items = %w(grapes bread milk cheese).map{|e| MenuItem.new(e, e)}
       @args = {:text => "hello world", :items => @items }
     end
-    
+
     describe "list height" do
       it "should be 3 times the number of list elements" do
         RDialogy::InputMenu.args(@args)[3].should == 12
@@ -54,3 +44,4 @@ describe RDialogy::InputMenu do
     end
   end
 end
+
