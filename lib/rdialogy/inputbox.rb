@@ -2,7 +2,10 @@ require File.dirname(__FILE__) + '/base'
 
 module RDialogy
   class InputBox < Base
-    private
+    def self.run(options={})
+        super options, true
+    end
+
     def self.command
       'inputbox'
     end
@@ -14,3 +17,4 @@ module RDialogy
     end
   end
 end
+
