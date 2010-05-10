@@ -11,14 +11,8 @@ describe RDialogy::Calendar do
 
   describe ".run" do
     before :each do
-      require 'stringio'
 
-      data = StringIO.new "01/05/2010\n"
-      tmp = mock('tempfile')
-      Tempfile.stub!(:new).and_return(tmp)
-      tmp.stub!(:path).and_return('/tmp/tempfile')
-      tmp.stub!(:readline).and_return { data.readline }
-      tmp.stub!(:close)
+      stdout_will_return '01/05/2010'
 
       @expectation = "dialog --calendar 'hello world' '0' '0'"
     end
@@ -39,3 +33,4 @@ describe RDialogy::Calendar do
     end
   end
 end
+

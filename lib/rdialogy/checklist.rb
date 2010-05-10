@@ -2,6 +2,11 @@ require File.dirname(__FILE__) + '/base'
 require File.dirname(__FILE__) + '/menu_item'
 
 module RDialogy
+# From dialog(1)
+#    A checklist box is similar to a menu box; there are multiple entries presented  in  the  form  of  a  menu.
+#    Instead  of choosing one entry among the entries, each entry can be turned on or off by the user.  The initial
+#    on/off state of each entry is specified by status.
+
   class Checklist < Base
 
 # Valid options are:
@@ -12,12 +17,6 @@ module RDialogy
 # * :items - Array of MenuItem
 #
 # Returns <b>Array</b>
-#
-# From the man page:
-#
-#    A checklist box is similar to a menu box; there are multiple entries presented  in  the  form  of  a  menu.
-#    Instead  of choosing one entry among the entries, each entry can be turned on or off by the user.  The initial
-#    on/off state of each entry is specified by status.
 
 
     def self.run(options={})
@@ -54,3 +53,4 @@ module RDialogy
 
   end
 end
+

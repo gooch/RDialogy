@@ -14,7 +14,7 @@ module RDialogy
         begin
           tmp = Tempfile.new('tmp')
           cmd += ' 2> ' + tmp.path
-        
+
           system cmd
 
           output = String.new
@@ -25,7 +25,7 @@ module RDialogy
           if block_given?
             return yield output
           else
-            return output
+            return output.chomp
           end
         ensure
           tmp.close
@@ -35,7 +35,6 @@ module RDialogy
       end
     end
 
-    private
 # Template method to be overloaded in child classes
 
     def self.command
@@ -59,9 +58,10 @@ module RDialogy
     end
 
 # Adds single quotes around all of the elements in the array returned by _args_
-
     def self.add_quotes(args)
       args.map{|e| "'#{e.to_s.gsub(/'/, "'\\\\''")}'"}
     end
+    private_class_method :add_quotes
   end
 end
+

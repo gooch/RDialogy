@@ -13,13 +13,7 @@ describe RDialogy::Form do
     before :each do
       require 'stringio'
 
-      data = StringIO.new "Paul\n42\n"
-
-      tmp = mock('tempfile')
-      Tempfile.stub!(:new).and_return(tmp)
-      tmp.stub!(:path).and_return('/tmp/tempfile')
-      tmp.stub!(:readline).and_return { data.readline }
-      tmp.stub!(:close)
+      stdout_will_return "Paul\n42"
 
       @items = [
         ['name', 1, 1, '', 1, 5, 5, 10],
@@ -45,3 +39,4 @@ describe RDialogy::Form do
     end
   end
 end
+

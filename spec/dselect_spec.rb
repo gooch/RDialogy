@@ -13,13 +13,8 @@ describe RDialogy::DSelect do
     before :each do
       require 'stringio'
 
-      data = StringIO.new '/var/www/Eliza_Dushku'
-
-      tmp = mock('tempfile')
-      Tempfile.stub!(:new).and_return(tmp)
-      tmp.stub!(:path).and_return('/tmp/tempfile')
-      tmp.stub!(:readline).and_return { data.readline }
-      tmp.stub!(:close)
+      @data = '/var/www/Eliza_Dushku'
+      stdout_will_return @data
 
       @expectation = "dialog --dselect '/var/www' '0' '0'"
     end
@@ -32,7 +27,8 @@ describe RDialogy::DSelect do
     it "should return a string" do
       args = { :path => '/var/www' }
       RDialogy::DSelect.should_receive(:system).with(/#{@expectation}/)
-      RDialogy::DSelect.run(args).should == '/var/www/Eliza_Dushku'
+      RDialogy::DSelect.run(args).should == @data
     end
   end
 end
+

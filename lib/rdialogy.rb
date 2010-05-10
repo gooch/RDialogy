@@ -19,3 +19,5 @@ require 'rdialogy/fselect'
 require 'rdialogy/menu'
 require 'rdialogy/mixedgauge'
 require 'rdialogy/passwordbox'
+require 'rdialogy/yesno'
+
