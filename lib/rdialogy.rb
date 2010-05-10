@@ -1,5 +1,5 @@
 class Rdialogy
-  VERSION = '1.0.0'
+  VERSION = '0.1.2'
 end
 
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__))
